@@ -7,12 +7,11 @@ import javax.inject.Singleton;
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 import dagger.multibindings.IntoMap;
 
-import com.xan.abankdemo3.Splash.SplashViewModel;
-import com.xan.abankdemo3.TestTwo;
+import com.xan.abankdemo3.splash.SplashViewModel;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
+import com.xan.abankdemo3.ui.login.LoginViewModel;
 
 @Singleton
 @Module
@@ -22,7 +21,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SplashViewModel.class)
     abstract ViewModel bindSplashViewModel(SplashViewModel listViewModel);
-
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel.class)
+    abstract ViewModel bindSplashViewModel(LoginViewModel loginViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

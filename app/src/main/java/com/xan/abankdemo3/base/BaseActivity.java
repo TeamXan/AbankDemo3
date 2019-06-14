@@ -1,21 +1,65 @@
 package com.xan.abankdemo3.base;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
 //import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public abstract class BaseActivity extends DaggerAppCompatActivity {
+public abstract class BaseActivity <T extends ViewDataBinding, V extends BaseViewModel> extends DaggerAppCompatActivity {
 
+    private T mViewDataBinding;
+    private V mViewModel;
+
+    /**
+     * Override for set binding variable
+     *
+     * @return variable id
+     */
+    public abstract int getBindingVariable();
+
+    /**
+     * @return layout resource id
+     */
+    public abstract
     @LayoutRes
-    protected abstract int layoutRes();
+    int getLayoutId();
 
-    @Override
+    /**
+     * Override for set view model
+     *
+     * @return view model instance
+     */
+    public abstract V getViewModel();
+
+       @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(layoutRes());
-        //ButterKnife.bind(this);
+        performDataBinding();
     }
+
+    public T getViewDataBinding() {
+        return mViewDataBinding;
+    }
+
+
+
+    private void performDataBinding() {
+        mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
+        this.mViewModel = mViewModel == null ? getViewModel() : mViewModel;
+        mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
+        mViewDataBinding.executePendingBindings();
+    }
+
+
 }

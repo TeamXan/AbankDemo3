@@ -1,7 +1,6 @@
-package com.xan.abankdemo3.Splash;
+package com.xan.abankdemo3.splash;
 
 import com.xan.abankdemo3.T2;
-import com.xan.abankdemo3.TestTwo;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

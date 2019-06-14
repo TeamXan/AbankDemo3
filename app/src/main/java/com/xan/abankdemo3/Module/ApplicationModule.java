@@ -1,11 +1,7 @@
 package com.xan.abankdemo3.Module;
 
-import android.app.Application;
-import android.content.Context;
-
-import com.xan.abankdemo3.Splash.T3;
-import com.xan.abankdemo3.Splash.TestFour;
-import com.xan.abankdemo3.Splash.TestThree;
+import com.xan.abankdemo3.splash.T3;
+import com.xan.abankdemo3.splash.TestThree;
 import com.xan.abankdemo3.T2;
 import com.xan.abankdemo3.TestTwo;
 

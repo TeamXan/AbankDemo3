@@ -1,8 +1,4 @@
-package com.xan.abankdemo3.Splash;
-
-import com.xan.abankdemo3.TestTwo;
-
-import javax.inject.Inject;
+package com.xan.abankdemo3.splash;
 
 public class TestFour {
     T3 test3;

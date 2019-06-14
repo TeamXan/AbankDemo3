@@ -5,6 +5,9 @@ import android.arch.lifecycle.ViewModel;
 import java.lang.ref.WeakReference;
 
 public abstract class BaseViewModel<N> extends ViewModel {
+    public BaseViewModel(){
+
+    }
     private WeakReference<N> mNavigator;
 
     public N getNavigator() {
