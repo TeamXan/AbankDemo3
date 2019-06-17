@@ -20,11 +20,12 @@ public abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SplashViewModel.class)
-    abstract ViewModel bindSplashViewModel(SplashViewModel listViewModel);
+    abstract ViewModel bindSplashViewModel(SplashViewModel splashViewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(LoginViewModel.class)
-    abstract ViewModel bindSplashViewModel(LoginViewModel loginViewModel);
+    abstract ViewModel bindLoginViewModel(LoginViewModel loginViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

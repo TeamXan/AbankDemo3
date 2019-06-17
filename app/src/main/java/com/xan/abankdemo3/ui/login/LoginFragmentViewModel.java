@@ -7,7 +7,7 @@ import com.xan.abankdemo3.base.BaseViewModel;
 import javax.inject.Inject;
 
 public class LoginFragmentViewModel extends BaseViewModel<LoginNavigator>{
-    @Inject
+
     public LoginFragmentViewModel() {
     }
 

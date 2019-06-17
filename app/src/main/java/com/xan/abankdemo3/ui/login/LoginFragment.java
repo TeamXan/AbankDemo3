@@ -13,11 +13,11 @@ import com.xan.abankdemo3.databinding.LoginFragBinding;
 
 import javax.inject.Inject;
 
-public class LoginFragment extends BaseFragment<LoginFragBinding,LoginFragmentViewModel> implements LoginNavigator {
+public class LoginFragment extends BaseFragment<LoginFragBinding,LoginViewModel> implements LoginNavigator {
 
     @Inject
     ViewModelFactory factory;
-    private LoginFragmentViewModel loginFragmentViewModel;
+    private LoginViewModel loginViewModel;
 
     public static final String TAG = LoginFragment.class.getSimpleName();
     public static LoginFragment newInstance() {
@@ -37,15 +37,15 @@ public class LoginFragment extends BaseFragment<LoginFragBinding,LoginFragmentVi
     }
 
     @Override
-    public LoginFragmentViewModel getViewModel() {
-        loginFragmentViewModel = ViewModelProviders.of(this, factory).get(LoginFragmentViewModel.class);
-        return loginFragmentViewModel;
+    public LoginViewModel getViewModel() {
+        loginViewModel = ViewModelProviders.of(this, factory).get(LoginViewModel.class);
+        return loginViewModel;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginFragmentViewModel.setNavigator(this);
+        loginViewModel.setNavigator(this);
 
 
     }

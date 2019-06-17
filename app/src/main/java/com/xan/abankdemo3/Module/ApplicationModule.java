@@ -15,7 +15,7 @@ import dagger.Provides;
 @Module(includes = ViewModelModule.class)
 public class ApplicationModule {
 
-    @Provides
+  /*  @Provides
     @Singleton
     String provideStringOne() {
         return "hello";
@@ -38,5 +38,5 @@ public class ApplicationModule {
     @Singleton
     T3 provideTestThree(TestThree test3) {
         return test3;
-    }
+    }*/
 }

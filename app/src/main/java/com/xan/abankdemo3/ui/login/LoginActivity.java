@@ -4,8 +4,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.xan.abankdemo3.BR;
 import com.xan.abankdemo3.R;
@@ -25,7 +23,7 @@ public class LoginActivity  extends BaseActivity<LoginLayoutBinding,LoginViewMod
     LoginLayoutBinding loginLayoutBinding;
     private LoginViewModel loginViewModel;
     public static Intent newIntent(Context context) {
-        return new Intent(context, LoginViewModel.class);
+        return new Intent(context, LoginActivity.class);
         }
 
 
