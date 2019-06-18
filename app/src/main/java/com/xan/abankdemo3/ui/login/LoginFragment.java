@@ -1,6 +1,7 @@
 package com.xan.abankdemo3.ui.login;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import com.xan.abankdemo3.R;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseFragment;
 import com.xan.abankdemo3.databinding.LoginFragBinding;
+import com.xan.abankdemo3.ui.userlist.UserListActivity;
 
 import javax.inject.Inject;
 
@@ -49,9 +51,18 @@ public class LoginFragment extends BaseFragment<LoginFragBinding,LoginViewModel>
 
 
     }
-    public void showToast(String username,String password) {
+   /* public void showToast(String username,String password) {
         Toast.makeText(getActivity(), "User Name !"+username+" Password !"+password,
                 Toast.LENGTH_LONG).show();
+
+    }*/
+
+    @Override
+    public void gotoUserListActivity() {
+        Intent intent = UserListActivity.newIntent(getContext());
+        intent.putExtra("User", loginViewModel.getU());
+        intent.putExtra("Password", loginViewModel.getP());
+        startActivity(intent);
 
     }
 }

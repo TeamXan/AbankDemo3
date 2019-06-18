@@ -24,8 +24,16 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
     }
 
     public void goLogin(){
-        getNavigator().showToast(username.getValue(),password.getValue());
+        //getNavigator().showToast(username.getValue(),password.getValue());
+        getNavigator().gotoUserListActivity();
 
+    }
+
+    public String getU(){
+        return username.getValue();
+    }
+    public String getP(){
+        return password.getValue();
     }
 
 }

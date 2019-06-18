@@ -4,6 +4,8 @@ import com.xan.abankdemo3.splash.SplashActivity;
 import com.xan.abankdemo3.splash.SplashModule;
 import com.xan.abankdemo3.ui.login.LoginActivity;
 import com.xan.abankdemo3.ui.login.LoginModule;
+import com.xan.abankdemo3.ui.userlist.UserListActivity;
+import com.xan.abankdemo3.ui.userlist.UserListModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -16,5 +18,8 @@ public abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = LoginModule.class)
     abstract LoginActivity bindLoginActivity();
+
+    @ContributesAndroidInjector(modules = UserListModule.class)
+    abstract UserListActivity bindUserActivity();
 
 }

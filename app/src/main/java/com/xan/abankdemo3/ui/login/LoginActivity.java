@@ -10,6 +10,7 @@ import com.xan.abankdemo3.R;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseActivity;
 import com.xan.abankdemo3.databinding.LoginLayoutBinding;
+import com.xan.abankdemo3.ui.userlist.UserListActivity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -61,8 +62,17 @@ public class LoginActivity  extends BaseActivity<LoginLayoutBinding,LoginViewMod
         }
 
 
-             @Override
+            /* @Override
              public void showToast(String name, String password) {
 
-             }
-         }
+             }*/
+
+    @Override
+    public void gotoUserListActivity() {
+        Intent intent = UserListActivity.newIntent(LoginActivity.this);
+        intent.putExtra("User", loginViewModel.getU());
+        intent.putExtra("Password", loginViewModel.getP());
+        startActivity(intent);
+        finish();
+    }
+}
