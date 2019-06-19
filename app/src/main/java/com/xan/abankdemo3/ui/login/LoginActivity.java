@@ -1,15 +1,19 @@
 package com.xan.abankdemo3.ui.login;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.xan.abankdemo3.BR;
 import com.xan.abankdemo3.R;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseActivity;
 import com.xan.abankdemo3.databinding.LoginLayoutBinding;
+import com.xan.abankdemo3.ui.repolist.RepoListActivity;
 import com.xan.abankdemo3.ui.userlist.UserListActivity;
 
 import javax.inject.Inject;
@@ -49,6 +53,14 @@ public class LoginActivity  extends BaseActivity<LoginLayoutBinding,LoginViewMod
         super.onCreate(savedInstanceState);
         loginLayoutBinding = getViewDataBinding();
         showFragment();
+        loginViewModel.password.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                Log.i("Change password",s);
+                loginViewModel.password.setValue(s);
+
+            }
+        });
         }
 
 
@@ -75,4 +87,13 @@ public class LoginActivity  extends BaseActivity<LoginLayoutBinding,LoginViewMod
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void gotoRepoListActivity() {
+        Intent intent = RepoListActivity.newIntent(LoginActivity.this);
+
+        startActivity(intent);
+        finish();
+    }
+
 }

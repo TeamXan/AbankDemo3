@@ -1,9 +1,11 @@
 package com.xan.abankdemo3.ui.login;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.xan.abankdemo3.BR;
@@ -11,6 +13,7 @@ import com.xan.abankdemo3.R;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseFragment;
 import com.xan.abankdemo3.databinding.LoginFragBinding;
+import com.xan.abankdemo3.ui.repolist.RepoListActivity;
 import com.xan.abankdemo3.ui.userlist.UserListActivity;
 
 import javax.inject.Inject;
@@ -48,6 +51,15 @@ public class LoginFragment extends BaseFragment<LoginFragBinding,LoginViewModel>
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginViewModel.setNavigator(this);
+        loginViewModel.password.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                Log.i("Change password",s);
+
+
+            }
+        });
+
 
 
     }
@@ -62,6 +74,13 @@ public class LoginFragment extends BaseFragment<LoginFragBinding,LoginViewModel>
         Intent intent = UserListActivity.newIntent(getContext());
         intent.putExtra("User", loginViewModel.getU());
         intent.putExtra("Password", loginViewModel.getP());
+        startActivity(intent);
+
+    }
+    @Override
+    public void gotoRepoListActivity() {
+        Intent intent = RepoListActivity.newIntent(getContext());
+
         startActivity(intent);
 
     }

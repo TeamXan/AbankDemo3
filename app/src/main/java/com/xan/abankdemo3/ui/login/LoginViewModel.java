@@ -28,6 +28,9 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
         getNavigator().gotoUserListActivity();
 
     }
+    public void goRepo(){
+        getNavigator().gotoRepoListActivity();
+    }
 
     public String getU(){
         return username.getValue();

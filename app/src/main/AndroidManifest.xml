@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xan.abankdemo3">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -19,6 +20,7 @@
         </activity>
         <activity android:name="com.xan.abankdemo3.ui.login.LoginActivity"/>
        <activity android:name=".ui.userlist.UserListActivity"/>
+        <activity android:name=".ui.repolist.RepoListActivity"/>
     </application>
 
 </manifest>
