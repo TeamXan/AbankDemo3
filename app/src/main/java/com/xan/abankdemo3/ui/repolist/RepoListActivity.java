@@ -8,19 +8,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.Toast;
 
 import com.xan.abankdemo3.BR;
 import com.xan.abankdemo3.R;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseActivity;
 import com.xan.abankdemo3.databinding.RepolistLayoutBinding;
-import com.xan.abankdemo3.databinding.UserlistLayoutBinding;
-import com.xan.abankdemo3.model.Users;
-import com.xan.abankdemo3.ui.login.LoginActivity;
-import com.xan.abankdemo3.ui.userlist.UserListAdapter;
-import com.xan.abankdemo3.ui.userlist.UserListViewModel;
 
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -71,8 +66,10 @@ public class RepoListActivity extends BaseActivity<RepolistLayoutBinding,RepoLis
     }
 
     private void subscribeToLiveData() {
-        repoListViewModel.getRepos().observe(this,
-                repoItemViewModels -> repoListViewModel
-                        .addRepoItemsToList(repoItemViewModels));
+        Toast.makeText(this,"hello",
+                Toast.LENGTH_LONG).show();
+        repoListViewModel.getRepoListLiveData()
+                .observe(this, repos -> repoListViewModel.addRepoItemsToList(repos));
     }
+
 }

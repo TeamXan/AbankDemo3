@@ -4,21 +4,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class Repository {
 
-    @SerializedName("stargazers_count")
-    public final long stars;
-    @SerializedName("forks_count")
-    public final long forks;
+    @SerializedName("name")
+    public final String name;
+    @SerializedName("realname")
+    public final String  realname;
 
-    public Repository(long stars, long forks) {
-        this.stars = stars;
-        this.forks = forks;
+
+    public Repository(String name, String realname) {
+        this.name = name;
+        this.realname = realname;
     }
 
-    public long getStars() {
-        return stars;
+    public String getName() {
+        return name;
     }
 
-    public long getForks() {
-        return forks;
+    public String getRealname() {
+        return realname;
     }
 }

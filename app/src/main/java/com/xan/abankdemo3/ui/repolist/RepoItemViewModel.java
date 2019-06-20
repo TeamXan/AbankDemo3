@@ -2,17 +2,18 @@ package com.xan.abankdemo3.ui.repolist;
 
 import android.databinding.ObservableField;
 
+import com.xan.abankdemo3.model.Repository;
+
 
 public class RepoItemViewModel {
-    public final ObservableField<String> forks = new ObservableField<>();
+    public final ObservableField<String> name ;
 
-    public final ObservableField<String> stars = new ObservableField<>();
+    public final ObservableField<String> realname ;
+    private final Repository repo;
 
-
-
-    public RepoItemViewModel(String forks, String stars) {
-        this.forks.set(forks);
-        this.stars.set(stars);
-
+    public RepoItemViewModel(Repository repository) {
+        this.repo =repository;
+        name = new ObservableField<>(repo.getName());
+        realname = new ObservableField<>(repo.getRealname());
     }
 }

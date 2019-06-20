@@ -7,17 +7,22 @@ import android.view.ViewGroup;
 
 import com.xan.abankdemo3.base.BaseViewHolder;
 import com.xan.abankdemo3.databinding.RepoItemBinding;
+import com.xan.abankdemo3.model.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private final List<RepoItemViewModel> repositoryList;
+    private List<Repository> repositoryList;
+    public RepoListAdapter(List<Repository> repoResponseList) {
+        this.repositoryList = repoResponseList;
 
-
-    public void addItems(List<RepoItemViewModel> repository) {
+    }
+    public void addItems(List<Repository> repository) {
         repositoryList.addAll(repository);
+        repository.size();
         notifyDataSetChanged();
     }
 
@@ -25,17 +30,14 @@ public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         repositoryList.clear();
     }
 
-    public RepoListAdapter() {
-        this.repositoryList = new ArrayList<>();
 
-    }
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         RepoItemBinding repoItemBinding = RepoItemBinding
                 .inflate(LayoutInflater.from(parent.getContext()),
                         parent, false);
-        return new RepoListAdapter.RepoItemViewHolder(repoItemBinding);
+        return new RepoItemViewHolder(repoItemBinding);
     }
 
 
@@ -58,7 +60,7 @@ public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         private RepoItemBinding mBinding;
 
-        //private RepoItemViewModel repoItemViewModel;
+        private RepoItemViewModel repoItemViewModel;
 
 
 
@@ -69,12 +71,11 @@ public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            final RepoItemViewModel repoItemViewModel = repositoryList
-                    .get(position);
+            /*final Repository repository = repositoryList.get(position);
+            repoItemViewModel = new RepoItemViewModel(repository);
             mBinding.setViewModel(repoItemViewModel);
 
-
-            mBinding.executePendingBindings();
+            mBinding.executePendingBindings();*/
         }
 
 

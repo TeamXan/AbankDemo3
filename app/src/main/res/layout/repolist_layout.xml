@@ -21,7 +21,7 @@
             android:id="@+id/repoItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:adapter="@{viewModel.repoItemViewModels}"
+            app:adapter="@{viewModel.repoObservableArrayList}"
             tools:listitem="@layout/repo_item"/>
 
     </LinearLayout>

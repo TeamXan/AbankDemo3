@@ -16,7 +16,7 @@ public class RepoListModule {
 
     @Provides
     RepoListAdapter provideAdapter() {
-        return new RepoListAdapter();
+        return new RepoListAdapter(new ArrayList<>());
     }
 
     @Provides

@@ -26,7 +26,7 @@ public class BindingUtils {
         }
     }
     @BindingAdapter({"adapter"})
-    public static void addRepoItems(RecyclerView recyclerView, List<RepoItemViewModel> repoList) {
+    public static void addRepoItems(RecyclerView recyclerView, List<Repository> repoList) {
         RepoListAdapter adapter = (RepoListAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.clearItems();

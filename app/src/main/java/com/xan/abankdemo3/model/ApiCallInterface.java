@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ApiCallInterface {
 
-    @GET("orgs/Google/repos")
+    @GET("marvel")
     Single<List<Repository>> getRepositories();
 }
