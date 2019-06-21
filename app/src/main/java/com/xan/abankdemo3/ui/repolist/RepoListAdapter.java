@@ -2,6 +2,7 @@ package com.xan.abankdemo3.ui.repolist;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -16,13 +17,9 @@ import javax.inject.Inject;
 public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<Repository> repositoryList;
-    public RepoListAdapter(List<Repository> repoResponseList) {
-        this.repositoryList = repoResponseList;
 
-    }
     public void addItems(List<Repository> repository) {
         repositoryList.addAll(repository);
-        repository.size();
         notifyDataSetChanged();
     }
 
@@ -30,7 +27,10 @@ public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         repositoryList.clear();
     }
 
+    public RepoListAdapter(List<Repository> repoResponseList) {
+        this.repositoryList = repoResponseList;
 
+    }
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -71,11 +71,17 @@ public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            /*final Repository repository = repositoryList.get(position);
-            repoItemViewModel = new RepoItemViewModel(repository);
-            mBinding.setViewModel(repoItemViewModel);
+            if(repositoryList.size()== 0){
+                return;
+            }
+                final Repository repository = repositoryList.get(position);
+                repoItemViewModel = new RepoItemViewModel(repository);
+                mBinding.setViewModel(repoItemViewModel);
 
-            mBinding.executePendingBindings();*/
+                mBinding.executePendingBindings();
+
+
+
         }
 
 

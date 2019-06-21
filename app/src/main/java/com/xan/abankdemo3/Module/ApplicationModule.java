@@ -4,11 +4,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.xan.abankdemo3.model.ApiCallInterface;
-import com.xan.abankdemo3.model.Repository;
-import com.xan.abankdemo3.splash.T3;
-import com.xan.abankdemo3.splash.TestThree;
-import com.xan.abankdemo3.T2;
-import com.xan.abankdemo3.TestTwo;
 
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +48,7 @@ public class ApplicationModule {
     }*/
 
   private static final String BASE_URL = "https://simplifiedcoding.net/demos/";
-  /*@Provides
+  @Provides
   @Singleton
   Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
 
@@ -94,15 +89,15 @@ public class ApplicationModule {
                 .readTimeout(300, TimeUnit.SECONDS);
 
         return httpClient.build();
-    }*/
-  @Singleton
+    }
+  /*@Singleton
   @Provides
   static Retrofit provideRetrofit() {
       return new Retrofit.Builder().baseUrl(BASE_URL)
               .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
               .addConverterFactory(GsonConverterFactory.create())
               .build();
-  }
+  }*/
 
     @Singleton
     @Provides

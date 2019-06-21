@@ -1,11 +1,13 @@
 package com.xan.abankdemo3.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Repository {
-
+    @Expose
     @SerializedName("name")
     public final String name;
+    @Expose
     @SerializedName("realname")
     public final String  realname;
 

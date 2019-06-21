@@ -23,11 +23,11 @@ public class RepoListViewModel extends BaseViewModel {
 
     private final ReturnDataRepository returnDataRepository;
     private CompositeDisposable disposable;
-   private final ObservableList<Repository> repoObservableArrayList = new ObservableArrayList<>();
+    public final ObservableList<Repository> repoObservableArrayList = new ObservableArrayList<>();
 
     private final MutableLiveData<List<Repository>> repoLivedata ;
     private final MutableLiveData<Boolean> repoLoadError = new MutableLiveData<>();
-    private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    //private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
 
     @Inject
     public RepoListViewModel(ReturnDataRepository returnDataRepository) {
@@ -46,15 +46,15 @@ public class RepoListViewModel extends BaseViewModel {
 
     }
 
-    private void fetchRepos() {
-        loading.setValue(true);
+    public void fetchRepos() {
+        setIsLoading(true);
         disposable.add(returnDataRepository.getRepositories().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<Repository>>() {
                     @Override
                     public void onSuccess(List<Repository> value) {
                         repoLoadError.setValue(false);
                         repoLivedata.setValue(value);
-                        loading.setValue(false);
+                        setIsLoading(false);
 
 
 
@@ -64,7 +64,7 @@ public class RepoListViewModel extends BaseViewModel {
                     public void onError(Throwable e) {
 
                         repoLoadError.setValue(true);
-                        loading.setValue(false);
+                        setIsLoading(false);
 
                     }
                 }));
