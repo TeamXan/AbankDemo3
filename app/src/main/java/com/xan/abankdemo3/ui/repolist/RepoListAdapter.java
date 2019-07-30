@@ -1,5 +1,7 @@
 package com.xan.abankdemo3.ui.repolist;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,26 +12,50 @@ import com.xan.abankdemo3.base.BaseViewHolder;
 import com.xan.abankdemo3.databinding.RepoItemBinding;
 import com.xan.abankdemo3.model.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class  RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private List<Repository> repositoryList;
 
-    public void addItems(List<Repository> repository) {
+    private final List<Repository> repositoryList = new ArrayList<>();
+
+   /* public void addItems(List<Repository> repository) {
         repositoryList.addAll(repository);
         notifyDataSetChanged();
-    }
+    }*/
 
-    public void clearItems() {
+  /*  public void clearItems() {
         repositoryList.clear();
-    }
+    }*/
 
-    public RepoListAdapter(List<Repository> repoResponseList) {
+
+
+   /* public RepoListAdapter(List<Repository> repoResponseList) {
         this.repositoryList = repoResponseList;
 
+    }*/
+    @Inject
+    public RepoListAdapter(RepoListViewModel viewModel,LifecycleOwner lifecycleOwner) {
+
+        viewModel.getRepoListLiveData().observe(lifecycleOwner, repos -> {
+            this.repositoryList.clear();
+            if (repos != null) {
+                this.repositoryList.addAll(repos);
+                notifyDataSetChanged();
+            }
+        });
+
+    }
+    @Override
+    public int getItemCount() {
+        if (repositoryList != null && repositoryList.size() > 0) {
+            return repositoryList.size();
+        } else {
+            return 1;
+        }
     }
     @NonNull
     @Override
@@ -47,14 +73,7 @@ public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
 
-    @Override
-    public int getItemCount() {
-        if (repositoryList != null && repositoryList.size() > 0) {
-            return repositoryList.size();
-        } else {
-            return 1;
-        }
-    }
+
 
     public class RepoItemViewHolder extends BaseViewHolder{
 
@@ -71,9 +90,9 @@ public class RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            if(repositoryList.size()== 0){
-                return;
-            }
+               /* if(repositoryList.size() == 0){
+                    return;
+                }*/
                 final Repository repository = repositoryList.get(position);
                 repoItemViewModel = new RepoItemViewModel(repository);
                 mBinding.setViewModel(repoItemViewModel);

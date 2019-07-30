@@ -9,7 +9,6 @@ public class SplashViewModel extends BaseViewModel<Navigator> {
     @Inject
     public SplashViewModel() {
 
-
     }
     public void start(){
 

@@ -1,5 +1,7 @@
 package com.xan.abankdemo3.Module;
 
+import android.arch.lifecycle.LifecycleOwner;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -104,5 +106,6 @@ public class ApplicationModule {
     static ApiCallInterface provideRetrofitService(Retrofit retrofit) {
         return retrofit.create(ApiCallInterface.class);
     }
+
 
 }

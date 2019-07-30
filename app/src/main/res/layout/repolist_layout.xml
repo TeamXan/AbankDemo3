@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.xan.abankdemo3.ui.repolist.RepoListActivity">
+    tools:context="com.xan.abankdemo3.ui.repolist.RepoListFragment">
 
     <data>
 
@@ -28,8 +28,10 @@
                 android:id="@+id/repoItem"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:adapter="@{viewModel.repoObservableArrayList}"
-                tools:listitem="@layout/repo_item"/>
+
+                tools:listitem="@layout/repo_item"
+
+               />
 
         </LinearLayout>
 
@@ -40,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"/>
+
     </FrameLayout>
 
 </layout>

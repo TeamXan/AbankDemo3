@@ -1,5 +1,7 @@
 package com.xan.abankdemo3.ui.repolist;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -14,20 +16,18 @@ import com.xan.abankdemo3.BR;
 import com.xan.abankdemo3.R;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseActivity;
+import com.xan.abankdemo3.databinding.RepolistActivityBinding;
 import com.xan.abankdemo3.databinding.RepolistLayoutBinding;
 
 
 import javax.inject.Inject;
 
-public class RepoListActivity extends BaseActivity<RepolistLayoutBinding,RepoListViewModel> {
+public class RepoListActivity extends BaseActivity<RepolistActivityBinding,RepoListViewModel> {
+
 
     @Inject
-    RepoListAdapter repoListAdapter;
-    @Inject
-    LinearLayoutManager mLayoutManager;
-    RepolistLayoutBinding repolistLayoutBinding;
-    @Inject
     ViewModelFactory factory;
+    RepolistActivityBinding repolistActivityBinding;
     private RepoListViewModel repoListViewModel;
     public static Intent newIntent(Context context) {
         return new Intent(context, RepoListActivity.class);
@@ -39,7 +39,7 @@ public class RepoListActivity extends BaseActivity<RepolistLayoutBinding,RepoLis
 
     @Override
     public int getLayoutId() {
-        return R.layout.repolist_layout;
+        return R.layout.repolist_activity;
     }
 
     @Override
@@ -51,25 +51,28 @@ public class RepoListActivity extends BaseActivity<RepolistLayoutBinding,RepoLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repolistLayoutBinding = getViewDataBinding();
-        setUp();
-        subscribeToLiveData();
+
+        repolistActivityBinding = getViewDataBinding();
+        showFragment();
+        //subscribeToLiveData();
     }
 
 
 
-    private void setUp() {
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        repolistLayoutBinding.repoItem.setLayoutManager(mLayoutManager);
-        repolistLayoutBinding.repoItem.setItemAnimator(new DefaultItemAnimator());
-        repolistLayoutBinding.repoItem.setAdapter(repoListAdapter);
-    }
 
-    private void subscribeToLiveData() {
+
+  /*  private void subscribeToLiveData() {
         Toast.makeText(this,"hello",
                 Toast.LENGTH_LONG).show();
-        repoListViewModel.getRepoListLiveData()
-                .observe(this, repos -> repoListViewModel.addRepoItemsToList(repos));
-    }
+        repoListViewModel.getRepoListLiveData(lifecycleOwner)
+                .observe(lifecycleOwner, repos -> repoListViewModel.addRepoItemsToList(repos));
+    }*/
 
+  private void showFragment() {
+      getSupportFragmentManager()
+              .beginTransaction()
+              .disallowAddToBackStack()
+              .add(R.id.screenContainer, RepoListFragment.newInstance(), RepoListFragment.TAG)
+              .commit();
+  }
 }

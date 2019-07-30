@@ -62,6 +62,7 @@ public class UserListActivity extends BaseActivity<UserlistLayoutBinding,UserLis
 
         userListViewModel.addList(changeList(User,Password));
 
+
         userlistLayoutBinding = getViewDataBinding();
         setUp();
     }

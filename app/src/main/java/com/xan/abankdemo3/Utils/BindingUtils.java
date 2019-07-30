@@ -29,8 +29,8 @@ public class BindingUtils {
     public static void addRepoItems(RecyclerView recyclerView, List<Repository> repoList) {
         RepoListAdapter adapter = (RepoListAdapter) recyclerView.getAdapter();
         if (adapter != null) {
-            adapter.clearItems();
-            adapter.addItems(repoList);
+           /* adapter.clearItems();
+            adapter.addItems(repoList);*/
         }
     }
 

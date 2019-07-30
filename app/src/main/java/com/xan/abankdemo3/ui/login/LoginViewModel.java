@@ -16,6 +16,7 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
     @Inject
     public LoginViewModel(){
 
+
     }
 
     public MutableLiveData<String> getPassword(){
