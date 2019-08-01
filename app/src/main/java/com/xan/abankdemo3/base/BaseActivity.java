@@ -9,6 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 //import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
@@ -60,6 +62,14 @@ public abstract class BaseActivity <T extends ViewDataBinding, V extends BaseVie
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
     }
-
+    public void hideKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        }
+    }
 
 }

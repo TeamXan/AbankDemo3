@@ -4,6 +4,8 @@ import com.xan.abankdemo3.splash.SplashActivity;
 import com.xan.abankdemo3.splash.SplashModule;
 import com.xan.abankdemo3.ui.login.LoginActivity;
 import com.xan.abankdemo3.ui.login.LoginModule;
+import com.xan.abankdemo3.ui.main.MainActivity;
+import com.xan.abankdemo3.ui.main.MainActivityModule;
 import com.xan.abankdemo3.ui.repolist.RepoFragmentProvider;
 import com.xan.abankdemo3.ui.repolist.RepoListActivity;
 import com.xan.abankdemo3.ui.repolist.RepoListModule;
@@ -18,6 +20,9 @@ public abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = SplashModule.class)
     abstract SplashActivity bindSplashActivity();
+
+    @ContributesAndroidInjector(modules = MainActivityModule.class)
+    abstract MainActivity bindMainActivity();
 
     @ContributesAndroidInjector(modules = LoginModule.class)
     abstract LoginActivity bindLoginActivity();

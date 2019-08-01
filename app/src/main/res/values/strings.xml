@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AbankDemo3</string>
+    <string name="login">LoginActivity</string>
+    <string name="repo">RepoListActivity</string>
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
 </resources>

@@ -12,6 +12,7 @@ import dagger.multibindings.IntoMap;
 import com.xan.abankdemo3.splash.SplashViewModel;
 import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.ui.login.LoginViewModel;
+import com.xan.abankdemo3.ui.main.MainVeiwModel;
 import com.xan.abankdemo3.ui.repolist.RepoItemViewModel;
 import com.xan.abankdemo3.ui.repolist.RepoListViewModel;
 import com.xan.abankdemo3.ui.userlist.UserItemViewModel;
@@ -25,6 +26,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SplashViewModel.class)
     abstract ViewModel bindSplashViewModel(SplashViewModel splashViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainVeiwModel.class)
+    abstract ViewModel bindMainViewModel(MainVeiwModel mainVeiwModel);
 
     @Binds
     @IntoMap

@@ -12,6 +12,7 @@ import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseActivity;
 import com.xan.abankdemo3.databinding.SplashLayoutBinding;
 import com.xan.abankdemo3.ui.login.LoginActivity;
+import com.xan.abankdemo3.ui.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -67,7 +68,7 @@ public class SplashActivity extends BaseActivity<SplashLayoutBinding,SplashViewM
 
     @Override
     public void openLoginActivity() {
-        Intent intent = LoginActivity.newIntent(SplashActivity.this);
+        Intent intent = MainActivity.newIntent(SplashActivity.this);
         startActivity(intent);
         finish();
         Toast.makeText(this, "This is my Toast message!",
