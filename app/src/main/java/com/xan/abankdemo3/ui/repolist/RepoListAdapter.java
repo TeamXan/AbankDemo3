@@ -20,16 +20,16 @@ import javax.inject.Inject;
 public class  RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
 
-    private final List<Repository> repositoryList = new ArrayList<>();
+    private List<Repository> repositoryList = new ArrayList<>();
 
-   /* public void addItems(List<Repository> repository) {
+    public void addItems(List<Repository> repository) {
         repositoryList.addAll(repository);
         notifyDataSetChanged();
-    }*/
+    }
 
-  /*  public void clearItems() {
+    public void clearItems() {
         repositoryList.clear();
-    }*/
+    }
 
 
 
@@ -37,16 +37,10 @@ public class  RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.repositoryList = repoResponseList;
 
     }*/
-    @Inject
-    public RepoListAdapter(RepoListViewModel viewModel,LifecycleOwner lifecycleOwner) {
 
-        viewModel.getRepoListLiveData().observe(lifecycleOwner, repos -> {
-            this.repositoryList.clear();
-            if (repos != null) {
-                this.repositoryList.addAll(repos);
-                notifyDataSetChanged();
-            }
-        });
+    public RepoListAdapter(List<Repository> repoList) {
+        this.repositoryList = repoList;
+
 
     }
     @Override
@@ -90,9 +84,7 @@ public class  RepoListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-               /* if(repositoryList.size() == 0){
-                    return;
-                }*/
+
                 final Repository repository = repositoryList.get(position);
                 repoItemViewModel = new RepoItemViewModel(repository);
                 mBinding.setViewModel(repoItemViewModel);

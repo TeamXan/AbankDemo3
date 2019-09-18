@@ -1,6 +1,7 @@
 package com.xan.abankdemo3.ui.repolist;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.ObservableBoolean;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.xan.abankdemo3.BR;
 import com.xan.abankdemo3.R;
@@ -18,10 +20,15 @@ import com.xan.abankdemo3.base.BaseFragment;
 import com.xan.abankdemo3.base.BaseViewModel;
 import com.xan.abankdemo3.databinding.RepolistActivityBinding;
 import com.xan.abankdemo3.databinding.RepolistLayoutBinding;
+import com.xan.abankdemo3.model.Repository;
+import com.xan.abankdemo3.ui.main.MainActivity;
+
+import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 
-public class RepoListFragment extends BaseFragment<RepolistLayoutBinding,RepoListViewModel> {
+public class RepoListFragment extends BaseFragment<RepolistLayoutBinding, RepoListViewModel> {
 
     @Inject
     ViewModelFactory factory;
@@ -34,12 +41,14 @@ public class RepoListFragment extends BaseFragment<RepolistLayoutBinding,RepoLis
     RepolistLayoutBinding repolistLayoutBinding;
 
     public static final String TAG = RepoListFragment.class.getSimpleName();
+
     public static RepoListFragment newInstance() {
         Bundle args = new Bundle();
         RepoListFragment fragment = new RepoListFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
@@ -52,38 +61,40 @@ public class RepoListFragment extends BaseFragment<RepolistLayoutBinding,RepoLis
 
     @Override
     public RepoListViewModel getViewModel() {
-        repoListViewModel = ViewModelProviders.of(this,factory).get(RepoListViewModel.class);
+        repoListViewModel = ViewModelProviders.of(this, factory).get(RepoListViewModel.class);
         return repoListViewModel;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("Fragment","f");
+        Log.i("Fragment", "f");
         repoListViewModel.setNavigator(this);
 
 
-
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         repolistLayoutBinding = getViewDataBinding();
+        repoListViewModel.fetchRepos();
         subscribeToLiveData();
-        ObservableBoolean loading = repoListViewModel.getIsLoading();
+     /*   ObservableBoolean loading = repoListViewModel.getIsLoading();
         if(loading.equals(false)){
             repolistLayoutBinding.repoItem.setVisibility(View.GONE);
 
 
-        }
-        setUp();
+        }*/
+        //setUp();
         observableViewModel();
 
         //repoListViewModel.fetchRepos();
-        //setUp();
-
+        setUp();
 
 
     }
+
     private void setUp() {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         repolistLayoutBinding.repoItem.setLayoutManager(mLayoutManager);
@@ -91,22 +102,34 @@ public class RepoListFragment extends BaseFragment<RepolistLayoutBinding,RepoLis
         repolistLayoutBinding.repoItem.setAdapter(repoListAdapter);
 
     }
+
     private void subscribeToLiveData() {
+
         repoListViewModel.getRepoListLiveData()
-                .observe(this, repos -> repoListViewModel.addRepoItemsToList(repos));
+                .observe( this,repos -> repoListViewModel.addRepoItemsToList(repos));
     }
+
+    private void gotoMain(List<Repository> repos) {
+        Intent intent = MainActivity.newIntent(getActivity());
+        intent.putExtra("responsedata", (Serializable) repos);
+        startActivity(intent);
+    }
+
+
 
     private void observableViewModel() {
         repoListViewModel.getRepoListLiveData().observe(this, repos -> {
-            if(repos != null) repolistLayoutBinding.repoItem.setVisibility(View.VISIBLE);
+            if (repos != null)
+                repoListViewModel.addRepoItemsToList(repos);
+                repolistLayoutBinding.repoItem.setVisibility(View.VISIBLE);
         });
 
         repoListViewModel.getError().observe(this, isError -> {
-            if (isError != null) if(isError) {
+            if (isError != null) if (isError) {
                 //errorTextView.setVisibility(View.VISIBLE);
                 repolistLayoutBinding.repoItem.setVisibility(View.GONE);
                 //errorTextView.setText("An Error Occurred While Loading Data!");
-            }else {
+            } else {
                 //errorTextView.setVisibility(View.GONE);
                 //errorTextView.setText(null);
             }

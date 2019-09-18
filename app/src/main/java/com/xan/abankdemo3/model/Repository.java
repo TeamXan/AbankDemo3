@@ -3,18 +3,22 @@ package com.xan.abankdemo3.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Repository {
+import java.io.Serializable;
+
+import javax.inject.Inject;
+
+public class Repository implements Serializable {
     @Expose
     @SerializedName("name")
-    public final String name;
+    public  String name;
+
     @Expose
     @SerializedName("realname")
-    public final String  realname;
+    public  String  realname;
 
+    @Inject
+    public Repository() {
 
-    public Repository(String name, String realname) {
-        this.name = name;
-        this.realname = realname;
     }
 
     public String getName() {

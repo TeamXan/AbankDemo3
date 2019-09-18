@@ -54,19 +54,11 @@ public class RepoListActivity extends BaseActivity<RepolistActivityBinding,RepoL
 
         repolistActivityBinding = getViewDataBinding();
         showFragment();
-        //subscribeToLiveData();
+
     }
 
 
 
-
-
-  /*  private void subscribeToLiveData() {
-        Toast.makeText(this,"hello",
-                Toast.LENGTH_LONG).show();
-        repoListViewModel.getRepoListLiveData(lifecycleOwner)
-                .observe(lifecycleOwner, repos -> repoListViewModel.addRepoItemsToList(repos));
-    }*/
 
   private void showFragment() {
       getSupportFragmentManager()

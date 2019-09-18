@@ -21,8 +21,8 @@ import dagger.android.ContributesAndroidInjector;
 public  class RepoListModule {
 
     @Provides
-    RepoListAdapter provideAdapter(RepoListViewModel repoListViewModel, LifecycleOwner lifecycleOwner) {
-        return new RepoListAdapter(repoListViewModel,lifecycleOwner);
+    RepoListAdapter provideAdapter() {
+        return new RepoListAdapter(new ArrayList<>());
     }
 
     @Provides
@@ -30,10 +30,6 @@ public  class RepoListModule {
         return new LinearLayoutManager(repoListActivity);
     }
 
-    @Provides
-    LifecycleOwner provideLifecycleOwner(RepoListActivity repoListActivity) {
 
-        return repoListActivity;
-    }
 
 }

@@ -3,6 +3,7 @@ package com.xan.abankdemo3.ui.repolist;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.util.Log;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 import com.xan.abankdemo3.base.BaseViewModel;
 import com.xan.abankdemo3.model.Repository;
 import com.xan.abankdemo3.model.ReturnDataRepository;
+import com.xan.abankdemo3.ui.main.MainActivity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +40,7 @@ public class RepoListViewModel extends BaseViewModel {
         this.returnDataRepository = returnDataRepository;
         disposable = new CompositeDisposable();
         repoLivedata = new MutableLiveData<>();
-        fetchRepos();
+
         Log.i("viewmodel","viewmodel");
     }
 
@@ -46,6 +49,9 @@ public class RepoListViewModel extends BaseViewModel {
         repoObservableArrayList.clear();
         repoObservableArrayList.addAll(repos);
         //repoObservableArrayList.size();
+        /*Intent intent = MainActivity.newIntent(context);
+        intent.putExtra("responsedata", (Serializable) repos);
+        context.startActivity(intent);*/
         Log.i("Array list",""+repoObservableArrayList.size());
 
     }
@@ -66,10 +72,10 @@ public class RepoListViewModel extends BaseViewModel {
                     public void onSuccess(List<Repository> value) {
 
                         repoLivedata.setValue(value);
-
                         Log.i("disposable","success");
                         repoLoadError.setValue(false);
                         loading.setValue(false);
+
 
 
 

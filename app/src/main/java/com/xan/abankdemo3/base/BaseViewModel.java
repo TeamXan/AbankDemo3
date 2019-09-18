@@ -1,5 +1,6 @@
 package com.xan.abankdemo3.base;
 
+import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
 
@@ -34,4 +35,5 @@ public abstract class BaseViewModel<N> extends ViewModel {
         mIsLoading.set(isLoading);
     }
 
+   
 }

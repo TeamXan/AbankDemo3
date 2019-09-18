@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,11 +25,15 @@ import com.xan.abankdemo3.Utils.ViewModelFactory;
 import com.xan.abankdemo3.base.BaseActivity;
 import com.xan.abankdemo3.databinding.ActivityMainBinding;
 import com.xan.abankdemo3.databinding.NavHeaderMainBinding;
+import com.xan.abankdemo3.model.Repository;
 import com.xan.abankdemo3.ui.login.LoginActivity;
+
+import java.io.Serializable;
 
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding,MainVeiwModel> implements MainNavigator {
+    @Inject Repository repository;
     public static Intent newIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
@@ -90,7 +95,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainVeiwModel
         activityMainBinding = getViewDataBinding();
 //        getSupportActionBar().hide();
         mainVeiwModel.setNavigator(this);
+
         setUp();
+        Repository repository = (Repository) getIntent().getSerializableExtra("responsedata");
+//        Log.i("response",repository.getName());
     }
 
     @Override
@@ -136,7 +144,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainVeiwModel
         mDrawerToggle.syncState();
         setupNavMenu();
 
-
+        //Repository repository = (Repository) getIntent().getSerializableExtra("responsedata");
     }
     private void setupNavMenu() {
         NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(),

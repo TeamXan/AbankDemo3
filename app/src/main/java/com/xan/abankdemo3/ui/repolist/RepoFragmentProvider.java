@@ -23,7 +23,7 @@ import dagger.android.ContributesAndroidInjector;
  * Created by amitshekhar on 14/09/17.
  */
 @Module
-public abstract class RepoFragmentProvider {
+public abstract class  RepoFragmentProvider {
 
   @ContributesAndroidInjector(modules = RepoListModule.class)
   abstract RepoListFragment provideRepoFragmentFactory();
